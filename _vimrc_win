@@ -1,0 +1,107 @@
+behave mswin
+syntax enable
+set nocompatible
+filetype plugin indent on 
+syntax on
+
+set ai
+set si
+set nu
+set lz
+set cindent
+set wrap
+set whichwrap+=<,>,[,]
+set lbr
+set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
+set showmatch
+set noswapfile
+
+"smart tab with space
+set expandtab
+set smarttab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+set backspace=indent,eol,start
+set showcmd
+set ruler
+set background=dark
+
+"search ingore case
+set hlsearch
+set incsearch
+"set ignorecase
+
+""colorscheme desert
+colorscheme zellner
+
+set termencoding=utf-8
+set fileencodings=utf-8,chinese,utf-16,big5,latin1
+set encoding=utf-8
+"notice message
+language messages zh_CN.utf-8
+
+if has("gui_running")
+    if exists("&cursorline")
+        set cuc 
+        set cul
+        set guioptions-=r
+        set guioptions-=T
+        "set guioptions-=m
+        set selectmode+=mouse
+        set guifont=YaHei_Consolas_Hybrid:h12
+        set ignorecase
+        set gcr=a:block-blinkon0
+        source $VIMRUNTIME/delmenu.vim
+        source $VIMRUNTIME/menu.vim
+    endif
+endif
+
+
+
+"Format the statusline
+set laststatus=2
+set statusline+=%F 
+set statusline+=\ %h%1*%m%r%w%0* " flag
+set statusline+=\ [%{strlen(&ft)?&ft:'none'}, " filetype
+set statusline+=%{&encoding}, " encoding
+set statusline+=%{&fileformat}] " file format
+set statusline+=\[Line:%l/%L]
+set statusline+=\[Colum:%c/%v]
+set statusline+=\ (%p%%)
+
+""taglist""
+let Tlist_Show_One_File=0     "显示显示所有buffer的tags
+""let Tlist_Show_One_File=1   "只显示当前buffer的tags
+let Tlist_Exit_OnlyWindow=1 
+let Tlist_Auto_Open=0
+let Tlist_WinWidth=26
+let Tlist_Sort_Type="name"
+let Tlist_Compact_Format=1
+"let Tlist_Use_Right_Window=1 "taglist在右侧显示
+let Tlist_GainFocus_On_ToggleOpen=1
+let Tlist_Use_Horiz_Window=1
+let Tlist_Display_Prototype=1
+
+""nerdtree
+let NERDTreeIgnore=['\.exe$', '\.dll$', '\.o$']
+ 
+""acp
+let g:acp_ignorecaseOption=1
+let g:acp_behaviorKeywordLength=2
+
+
+map <F2> \m
+map <F3> \n
+map <F6> <ESC>:NERDTreeToggle<CR>
+map <F7> <ESC>:TlistToggle<CR>
+map <F9> <ESC>:tabn<CR>
+map <F10> <ESC>:tabp<CR>
+
+map <C-]> g]
+nmap <space> :
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l

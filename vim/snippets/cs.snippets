@@ -1,0 +1,45 @@
+#using
+snippet us
+	using ${1:System};
+
+#class main
+snippet hw
+	using System;
+
+	namspace ${1:Test} {
+		class Test 
+		{
+			public static void Main(String[] args) {
+				${2}
+				return;
+			}
+		}
+	}
+
+#try
+snippet try Try with Catch block
+	try {
+		${1}
+	}
+	catch {
+	}
+snippet try Try with Catch and Finally block
+	try { 
+		${1}
+	} 
+	catch {
+	}
+	finally	{
+	}
+snippet try Try with Finally block
+	try	{
+		${1}
+	}
+	finally	{
+	}
+
+#summary
+snippet ///
+	///<summary>
+	///${1}
+	///</summary>
