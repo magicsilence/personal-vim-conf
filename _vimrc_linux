@@ -86,8 +86,8 @@ map <F2> \m
 map <F3> \n
 map <F6> <ESC>:NERDTreeToggle<cr>
 map <F7> <ESC>:TlistToggle<CR>
-map <F9> <ESC>:tabn<cr>
-map <F10> <ESC>:tabp<cr>
+map <F9> <ESC>:tabNext<cr>
+map <F10> <ESC>:tabprevious<cr>
 
 map <C-]> g]
 nmap <space> :
@@ -95,5 +95,4 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
 
