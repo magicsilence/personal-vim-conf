@@ -1,5 +1,9 @@
 behave mswin
 syntax enable
+
+au! BufRead,BufNewFile *.boo setfiletype boo
+au! BufRead,BufNewFile *.proto setfiletype proto
+
 set nocompatible
 filetype plugin indent on 
 syntax on

@@ -1,5 +1,5 @@
-au BufRead,BufNewFile *.boo set filetype=boo
-au! Syntax boo source /home/cws/.vim/syntax/boo.vim
+au! BufRead,BufNewFile *.boo setfiletype boo
+au! BufRead,BufNewFile *.proto setfiletype proto
 
 set nocompatible
 filetype plugin indent on 
