@@ -19,7 +19,6 @@ set noswapfile
 set nobomb
 set cc=81
 
-"smart tab with space
 set expandtab
 set smarttab
 set tabstop=4
@@ -31,15 +30,19 @@ set showcmd
 set ruler
 set background=dark
 
-"search ingore case
 set hlsearch
 set incsearch
 "set ignorecase
 
-"path
+
+"""session
+set sessionoptions+=resize,unix,slash
+
+
+"""path
 set path+=$HOME/local/fcgi/fcgi-2.4.0/include,$HOME/local/libiconv/libiconv-1.13.1/include,/usr/include
 
-"Format the statusline
+"""Format the statusline
 set laststatus=2
 set statusline+=%F 
 set statusline+=\ %h%1*%m%r%w%0* " flag
@@ -66,7 +69,7 @@ let Tlist_Ctags_Cmd="PATH_TO_TAG_FILE"
 let Tlist_Show_One_File=1   "只显示当前buffer的tags
 let Tlist_Exit_OnlyWindow=1 
 let Tlist_Auto_Open=0
-let Tlist_WinWidth=20
+let Tlist_WinWidth=25
 let Tlist_Sort_Type="name"
 let Tlist_Compact_Format=1
 "let Tlist_Use_Right_Window=1 "taglist在右侧显示
@@ -74,21 +77,33 @@ let Tlist_GainFocus_On_ToggleOpen=1
 let Tlist_Use_Horiz_Window=1
 let Tlist_Display_Prototype=1
 
-""nerdtree
+"""nerdtree
 let NERDTreeIgnore=['\.exe$', '\.dll$', '\.o$']
 
-""acp
-let g:acp_ignorecaseOption=1
-let g:acp_behaviorKeywordLength=2
+"""doxygen
+let g:DoxygenToolkit_briefTag_pre="@Desc   "
+let g:DoxygenToolkit_paramTag_pre="@Param  "
+let g:DoxygenToolkit_returnTag="@Returns  "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_authorName="lithium <lijie2@ucweb.com>"
+let g:DoxygenToolkit_versionString="v1.0.0"
+let g:DoxygenToolkit_licenseTag="no license"
 
 
-map <F2> \m
-map <F3> \n
+"""keys map
+map <F1> <ESC>\/
+map <F2> <ESC>\m
+map <F3> <ESC>\n
 map <F6> <ESC>:NERDTreeToggle<cr>
-map <F7> <ESC>:TlistToggle<CR>
+map <F7> <ESC>:TlistToggle<cr>
 map <F9> <ESC>:tabNext<cr>
 map <F10> <ESC>:tabprevious<cr>
 
+map <F4>a <ESC>:DoxAuthor<cr>
+map <F4>f <ESC>:Dox<cr>
+          :
 map <C-]> g]
 nmap <space> :
 map <C-h> <C-w>h
