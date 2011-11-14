@@ -251,8 +251,8 @@
 " let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
 " let g:DoxygenToolkit_paramTag_pre="@Param "
 " let g:DoxygenToolkit_returnTag="@Returns   "
-" let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-" let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+" let g:DoxygenToolkit_blockHeader="---------------------------------------------------------------------"
+" let g:DoxygenToolkit_blockFooter="---------------------------------------------------------------------"
 " let g:DoxygenToolkit_authorName="Mathias Lorente"
 " let g:DoxygenToolkit_licenseTag="My own license"   <-- Does not end with
 " "\<enter>"
@@ -489,6 +489,7 @@ function! <SID>DoxygenAuthorFunc()
   exec "normal o".s:interCommentTag.g:DoxygenToolkit_versionTag.g:DoxygenToolkit_versionString
   let l:date = strftime("%Y-%m-%d")
   exec "normal o".s:interCommentTag.g:DoxygenToolkit_dateTag.l:date
+  exec "normal o".s:interCommentTag.g:DoxygenToolkit_licenseTag 
   if ( g:DoxygenToolkit_endCommentTag != "" )
     exec "normal o".s:endCommentTag
   endif

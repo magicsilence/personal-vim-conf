@@ -5,29 +5,33 @@ set nocompatible
 filetype plugin indent on 
 syntax on
 
+""" common settings
 set ai
 set si
-set nu
-set lz
 set cindent
 set wrap
 set whichwrap+=<,>,[,]
+
+set nu
+set ruler
+set lz
 set lbr
-"set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
 set showmatch
+set showcmd
+set mouse=a
+
 set noswapfile
 set nobomb
-set cc=81
+
+set history=50
 
 set expandtab
 set smarttab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-
 set backspace=indent,eol,start
-set showcmd
-set ruler
+
 set background=dark
 
 set hlsearch
@@ -41,9 +45,11 @@ set sessionoptions+=resize,unix,slash
 
 """path
 set path+=$HOME/local/fcgi/fcgi-2.4.0/include,$HOME/local/libiconv/libiconv-1.13.1/include,/usr/include
+set path+=.,../,../../,/usr/include,/usr/local/include,../include,../../include
 
 """Format the statusline
 set laststatus=2
+set statusline= "empty first
 set statusline+=%F 
 set statusline+=\ %h%1*%m%r%w%0* " flag
 set statusline+=\ [%{strlen(&ft)?&ft:'none'}, " filetype
@@ -53,6 +59,9 @@ set statusline+=\ [Line:%l/%L]
 set statusline+=\ [Colum:%c/%v]
 set statusline+=\ (%p%%)
 
+
+""" Encoding and file format
+set ff=unix
 set fileencodings=utf-8,chinese,utf-16,big5,latin1
 set fileencoding=utf-8
 set encoding=utf-8
@@ -60,22 +69,46 @@ set termencoding=utf-8
 language messages zh_CN.utf-8
 
 
-""tags""
-"set tags+=$HOME/projects/navi_service-dev/tags
+" tab configuration
+map <leader>tn :tabnew<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tp :tabnext<cr>
 
-""taglist""
-let Tlist_Ctags_Cmd="PATH_TO_TAG_FILE"
-""let Tlist_Show_One_File=0     "显示显示所有buffer的tags
+
+"""OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 0
+let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+let OmniCpp_MayCompleteDot = 1      " autocomplete after .
+let OmniCpp_MayCompleteArrow = 1    " autocomplete after ->
+let OmniCpp_MayCompleteScope = 1    " autocomplete after ::
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+
+" Automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest,preview
+
+
+"""tags
+set tags+=/home/lijie/projects/respage_service-dev/tags
+set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
+set tags+=$HOME/.vim/data/stl_tags
+
+"""taglist
+let Tlist_Ctags_Cmd="$HOME/local/ctags/ctags-5.8/bin/ctags"
+"let Tlist_Show_One_File=0     "显示显示所有buffer的tags
 let Tlist_Show_One_File=1   "只显示当前buffer的tags
 let Tlist_Exit_OnlyWindow=1 
 let Tlist_Auto_Open=0
 let Tlist_WinWidth=25
 let Tlist_Sort_Type="name"
 let Tlist_Compact_Format=1
-"let Tlist_Use_Right_Window=1 "taglist在右侧显示
+let Tlist_Use_Right_Window=1 "taglist在右侧显示
 let Tlist_GainFocus_On_ToggleOpen=1
-let Tlist_Use_Horiz_Window=1
-let Tlist_Display_Prototype=1
+let Tlist_Use_Horiz_Window=0
+let Tlist_Display_Prototype=0
 
 """nerdtree
 let NERDTreeIgnore=['\.exe$', '\.dll$', '\.o$']
@@ -84,12 +117,25 @@ let NERDTreeIgnore=['\.exe$', '\.dll$', '\.o$']
 let g:DoxygenToolkit_briefTag_pre="@Desc   "
 let g:DoxygenToolkit_paramTag_pre="@Param  "
 let g:DoxygenToolkit_returnTag="@Returns  "
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------------"
 let g:DoxygenToolkit_briefTag_funcName = "yes"
 let g:DoxygenToolkit_authorName="lithium <lijie2@ucweb.com>"
 let g:DoxygenToolkit_versionString="v1.0.0"
-let g:DoxygenToolkit_licenseTag="no license"
+let g:DoxygenToolkit_licenseTag="Copyright (c) 2004-2011 UCWEB. All rights reserved."
+
+
+" Set mapleader
+let mapleader = ","
+
+""" Fast reloading of the .vimrc
+map <silent> <leader>s :source $HOME/.vimrc<cr>
+
+"""Fast editing of .vimrc
+map <silent> <leader>e :e $HOME/.vimrc<cr>
+
+"""When .vimrc is edited, reload it
+autocmd! bufwritepost .vimrc source $HOME/.vimrc
 
 
 """keys map
@@ -106,8 +152,14 @@ map <F4>f <ESC>:Dox<cr>
           :
 map <C-]> g]
 nmap <space> :
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+
+"""quickfix map
+nmap <leader>cn :cn<cr>
+nmap <leader>cp :cp<cr>
+nmap <leader>cw :cw 10<cr> 
+
+"""Build tags of your own project with F12
+map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+
 
