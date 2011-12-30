@@ -6,16 +6,27 @@ snippet fileheader
 
 # main()
 snippet main
-	int main(int argc, const char *argv[]) {
+	int main(int argc, char *argv[]) {
 		${1}
 		return 0;
 	}
 # #include <...>
 snippet inc
-	#include <${1:stdio}.h>${2}
+	#include <${1:stdio}.h>
+
+	${2}
+# #include util headers
+snippet include
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include <unistd.h>
+
+	${1}
 # #include "..."
 snippet Inc
-	#include "${1:`Filename("$1.h")`}"${2}
+	#include "${1:`Filename("$1.h")`}"
+
+	${2}
 # #ifndef ... #define ... #endif
 snippet Def
 	#ifndef $1
