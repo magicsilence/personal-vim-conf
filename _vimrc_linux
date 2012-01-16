@@ -57,6 +57,7 @@ set statusline+=%{&encoding}, " encoding
 set statusline+=%{&fileformat}] " file format
 set statusline+=\ [Line:%l/%L]
 set statusline+=\ [Colum:%c/%v]
+set statusline+=\ [0x%04B]    
 set statusline+=\ (%p%%)
 
 
@@ -69,11 +70,13 @@ set termencoding=utf-8
 language messages zh_CN.utf-8
 
 
-" tab configuration
-map <leader>tn :tabnew<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tp :tabprevious<cr>
-map <leader>tp :tabnext<cr>
+"""gdb
+set previewheight=16
+set asm=0
+"set gdbprg=gdb_invocation
+let g:vimgdb_debug_file = ""
+run macros/gdb_mappings.vim
+
 
 
 """OmniCppComplete
@@ -96,13 +99,14 @@ set tags+=/home/lijie/projects/respage_service-dev/tags
 set tags+=./tags,../tags,../../tags,../../../tags,../../../../tags
 set tags+=$HOME/.vim/data/stl_tags
 
+
 """taglist
 let Tlist_Ctags_Cmd="$HOME/local/ctags/ctags-5.8/bin/ctags"
 "let Tlist_Show_One_File=0     "显示显示所有buffer的tags
 let Tlist_Show_One_File=1   "只显示当前buffer的tags
 let Tlist_Exit_OnlyWindow=1 
 let Tlist_Auto_Open=0
-let Tlist_WinWidth=25
+let Tlist_WinWidth=30
 let Tlist_Sort_Type="name"
 let Tlist_Compact_Format=1
 let Tlist_Use_Right_Window=1 "taglist在右侧显示
@@ -125,10 +129,20 @@ let g:DoxygenToolkit_versionString="v1.0.0"
 let g:DoxygenToolkit_licenseTag="Copyright (c) 2004-2011 UCWEB. All rights reserved."
 
 
+"""keys map
+map <F2> <ESC>:NERDTreeToggle<cr>
+map <F3> <ESC>:TlistToggle<cr>
+map <F4>a <ESC>:DoxAuthor<cr>
+map <F4>f <ESC>:Dox<cr>
+
+map <C-]> g
+nmap <space> :
+
+
 " Set mapleader
 let mapleader = ","
 
-""" Fast reloading of the .vimrc
+"""quick edit, quick reload
 map <silent> <leader>s :source $HOME/.vimrc<cr>
 
 """Fast editing of .vimrc
@@ -137,26 +151,20 @@ map <silent> <leader>e :e $HOME/.vimrc<cr>
 """When .vimrc is edited, reload it
 autocmd! bufwritepost .vimrc source $HOME/.vimrc
 
-
-"""keys map
-map <F1> <ESC>\/
-map <F2> <ESC>\m
-map <F3> <ESC>\n
-map <F6> <ESC>:NERDTreeToggle<cr>
-map <F7> <ESC>:TlistToggle<cr>
-map <F9> <ESC>:tabNext<cr>
-map <F10> <ESC>:tabprevious<cr>
-
-map <F4>a <ESC>:DoxAuthor<cr>
-map <F4>f <ESC>:Dox<cr>
-          :
-map <C-]> g]
-nmap <space> :
+""gdb
+map <leader>gv :bo 20vsp gdb-variables<cr>
 
 """quickfix map
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
-nmap <leader>cw :cw 10<cr> 
+
+"""tab configuration
+map <leader>to :tabnew<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tn :tabnext<cr>
+
+
 
 """Build tags of your own project with F12
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>

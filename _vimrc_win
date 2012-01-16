@@ -19,8 +19,6 @@ set lbr
 set cinoptions={0,1s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s
 set showmatch
 set noswapfile
-"vim73 support
-set cc=81
 
 "smart tab with space
 set expandtab
@@ -97,18 +95,26 @@ let NERDTreeIgnore=['\.exe$', '\.dll$', '\.o$']
 let g:acp_ignorecaseOption=1
 let g:acp_behaviorKeywordLength=2
 
-
-map <F2> \m
-map <F3> \n
-map <F6> <ESC>:NERDTreeToggle<cr>
-map <F7> <ESC>:TlistToggle<CR>
-map <F9> <ESC>:tabNext<cr>
-map <F10> <ESC>:tabprevious<cr>
+map <F2> <ESC>:NERDTreeToggle<cr>
+map <F3> <ESC>:TlistToggle<cr>
+map <F4>a <ESC>:DoxAuthor<cr>
+map <F4>f <ESC>:Dox<cr>
 
 map <C-]> g]
 nmap <space> :
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+
+let mapleader = ","
+
+"""quickfix map
+nmap <leader>cn :cn<cr>
+nmap <leader>cp :cp<cr>
+
+"""tab configuration
+map <leader>to :tabnew<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tp :tabprevious<cr>
+map <leader>tn :tabnext<cr>
+
+
+
 
