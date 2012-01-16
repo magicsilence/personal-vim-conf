@@ -142,13 +142,25 @@ snippet un
 	unsigned
 snippet /*
 	/* ${1} */
-snippet debuglog
-	#ifdef JEE_DEBUG
-		DEBUG_LOG("${1:debug sth}");
-	#endif
-snippet errlog
-	ERR_LOG("[${1:FATAL}]:${2}");
-snippet //{
-	//${1:what?} {{{
-		${2:do sth}
-	//}}}
+snippet token
+	%token ${1}
+snippet  type 
+	%type ${1}
+snippet base
+	%{
+		/* prologue */
+		/* include, define, function declarations*/
+		${1}
+
+	%}
+
+	/* bison declarations */
+	/* token type */
+
+
+	/*grammar rules*/
+	%%
+	%%
+
+	/* epilogue */
+

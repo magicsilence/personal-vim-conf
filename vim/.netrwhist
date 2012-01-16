@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/lijie/local/libevent/libevent-2.0.15/src/libevent-2.0.15-stable/include/event2'
+let g:netrw_dirhist_2='/home/lijie/projects/navi_manager-dev/cdmng'
+let g:netrw_dirhist_3='/home/lijie/local/fcgi/fcgi-2.4.0/src/fcgi-2.4.0/examples'
