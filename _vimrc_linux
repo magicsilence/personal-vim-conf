@@ -38,6 +38,7 @@ set hlsearch
 set incsearch
 "set ignorecase
 
+set wildmenu
 
 """session
 set sessionoptions+=resize,unix,slash
@@ -92,6 +93,19 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " Automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+
+""Automatically view load & save
+set viewoptions-=options
+augroup vimrc
+    autocmd BufWritePost *
+                \   if expand('%') != '' && &buftype !~ 'nofile'
+                \|      mkview
+                \|  endif
+    autocmd BufRead *
+                \   if expand('%') != '' && &buftype !~ 'nofile'
+                \|      silent loadview
+                \|  endif
+augroup END
 
 
 """tags
@@ -152,14 +166,14 @@ map <silent> <leader>e :e $HOME/.vimrc<cr>
 autocmd! bufwritepost .vimrc source $HOME/.vimrc
 
 ""gdb
-map <leader>gv :bo 20vsp gdb-variables<cr>
+map <leader>gv :bel 20vsp gdb-variables<cr>
 
 """quickfix map
 nmap <leader>cn :cn<cr>
 nmap <leader>cp :cp<cr>
 
 """tab configuration
-map <leader>to :tabnew<cr>
+map <leader>to :tabnew 
 map <leader>tc :tabclose<cr>
 map <leader>tp :tabprevious<cr>
 map <leader>tn :tabnext<cr>
