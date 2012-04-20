@@ -65,8 +65,8 @@ function! s:Toggle()
 	nmap <silent> Q :call gdb("quit")<CR>
 	nmap <silent> C :call gdb("continue")<CR>
 	nmap <silent> W :call gdb("where")<CR>
-	nmap <silent> <C-U> :call gdb("up")<CR>
-	nmap <silent> <C-D> :call gdb("down")<CR>
+	"nmap <silent> <C-U> :call gdb("up")<CR>
+	"nmap <silent> <C-D> :call gdb("down")<CR>
 
 	" set/clear bp at current line
 	nmap <silent> <C-B> :call <SID>Breakpoint("break")<CR>
