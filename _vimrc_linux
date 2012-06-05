@@ -9,7 +9,9 @@ syntax on
 set ai
 set si
 set cindent
+set sm
 set wrap
+set nobomb
 set whichwrap+=<,>,[,]
 
 set nu
@@ -17,6 +19,7 @@ set ruler
 set lz
 set lbr
 set showmatch
+set matchtime=1
 set showcmd
 set mouse=a
 
@@ -71,13 +74,17 @@ set termencoding=utf-8
 language messages zh_CN.utf-8
 
 
+""javascript need syntax/javascript.vim
+let b:javascript_fold=1
+let javascript_enable_domhtmlcss=1
+
+
 """gdb
 set previewheight=16
 set asm=0
 "set gdbprg=gdb_invocation
 let g:vimgdb_debug_file = ""
 run macros/gdb_mappings.vim
-
 
 
 """OmniCppComplete
@@ -90,9 +97,11 @@ let OmniCpp_MayCompleteArrow = 1    " autocomplete after ->
 let OmniCpp_MayCompleteScope = 1    " autocomplete after ::
 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 
+
 " Automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
+
 
 ""Automatically view load & save
 set viewoptions-=options
@@ -132,29 +141,34 @@ let Tlist_Display_Prototype=0
 let NERDTreeIgnore=['\.exe$', '\.dll$', '\.o$']
 
 """doxygen
-let g:DoxygenToolkit_briefTag_pre="@Desc   "
-let g:DoxygenToolkit_paramTag_pre="@Param  "
-let g:DoxygenToolkit_returnTag="@Returns  "
+let g:DoxygenToolkit_compactOneLineDoc = "yes"
+let g:DoxygenToolkit_commentType = "C++" 
+let g:DoxygenToolkit_briefTag_pre="@desc   "
 let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------------"
 let g:DoxygenToolkit_blockFooter="--------------------------------------------------------------------------------"
 let g:DoxygenToolkit_briefTag_funcName = "yes"
-let g:DoxygenToolkit_authorName="lithium <lijie2@ucweb.com>"
+let g:DoxygenToolkit_authorName="Lithium <lijie2@ucweb.com>"
 let g:DoxygenToolkit_versionString="v1.0.0"
-let g:DoxygenToolkit_licenseTag="Copyright (c) 2004-2011 UCWEB. All rights reserved."
+let g:DoxygenToolkit_licenseTag="Copyleft. No Rights Reserved."
 
 
 """keys map
 map <F2> <ESC>:NERDTreeToggle<cr>
 map <F3> <ESC>:TlistToggle<cr>
-map <F4>a <ESC>:DoxAuthor<cr>
-map <F4>f <ESC>:Dox<cr>
 
 map <C-]> g
 nmap <space> :
 
+"edit file in new window
+nmap gF <C-W><C-F>
 
 " Set mapleader
 let mapleader = ","
+
+"""doxgen
+map <leader>da <ESC>:DoxAuthor<cr>
+map <leader>df <ESC>:Dox<cr>
+
 
 """quick edit, quick reload
 map <silent> <leader>s :source $HOME/.vimrc<cr>
@@ -179,6 +193,8 @@ map <leader>tp :tabprevious<cr>
 map <leader>tn :tabnext<cr>
 
 
+"""markdown
+nmap <leader>md :%!$HOME/.vim/scripts/Markdown.pl --html4tags <cr>
 
 """Build tags of your own project with F12
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
