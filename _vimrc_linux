@@ -48,7 +48,6 @@ set sessionoptions+=resize,unix,slash
 
 
 """path
-set path+=$HOME/local/fcgi/fcgi-2.4.0/include,$HOME/local/libiconv/libiconv-1.13.1/include,/usr/include
 set path+=.,../,../../,/usr/include,/usr/local/include,../include,../../include
 
 """Format the statusline
