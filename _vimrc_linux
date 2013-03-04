@@ -123,7 +123,7 @@ set tags+=$HOME/.vim/data/stl_tags
 
 
 """taglist
-let Tlist_Ctags_Cmd="$HOME/local/ctags/ctags-5.8/bin/ctags"
+"let Tlist_Ctags_Cmd="$HOME/local/ctags/ctags-5.8/bin/ctags"
 "let Tlist_Show_One_File=0     "显示显示所有buffer的tags
 let Tlist_Show_One_File=1   "只显示当前buffer的tags
 let Tlist_Exit_OnlyWindow=1 
